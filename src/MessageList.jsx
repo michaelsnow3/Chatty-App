@@ -3,14 +3,14 @@ import Message from './Message.jsx';
 
 function MessageList({ messages }) {
   const messageList = messages.map(message => {
-    if(message.type === "incomingMessage"){
+    if(message.type === 'incomingMessage'){
       return (<Message message={message} />)
     }
   })
   return(
-    <div className="messages">
+    <main className='messages'>
       {messageList}
-    </div>
+    </main>
   );
 }
 export default MessageList;

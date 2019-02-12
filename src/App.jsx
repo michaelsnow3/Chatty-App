@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import MessageList from './MessageList.jsx';
 import ChatBar from './ChatBar.jsx';
 
-import sample from "./sample.json";
+import sample from './sample.json';
 
 class App extends Component {
   constructor() {
@@ -12,6 +12,7 @@ class App extends Component {
       messages: sample
     }
   }
+  
   render() {
     return (
       <div>
