@@ -3,9 +3,7 @@ import Message from './Message.jsx';
 
 function MessageList({ messages }) {
   const messageList = messages.map(message => {
-    if(message.type === 'incomingMessage'){
-      return (<Message message={message} />)
-    }
+    return (<Message key={message.id.toString()} message={message} />)
   })
   return(
     <main className='messages'>
@@ -13,4 +11,5 @@ function MessageList({ messages }) {
     </main>
   );
 }
+
 export default MessageList;
