@@ -3,7 +3,9 @@ import Message from './Message.jsx';
 
 function MessageList({ messages }) {
   const messageList = messages.map(message => {
-    return (<Message message={message} />)
+    if(message.type === "incomingMessage"){
+      return (<Message message={message} />)
+    }
   })
   return(
     <div className="messages">

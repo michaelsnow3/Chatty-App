@@ -7,7 +7,7 @@ class App extends Component {
     super();
 
     this.state = {
-      data: sample
+      messages: sample
     }
   }
   render() {
@@ -16,7 +16,7 @@ class App extends Component {
         <nav className='navbar'>
           <a href='/' className='navbar-brand' >Chatty</a>
         </nav>
-        <MessageList messages={this.state.data} />
+        <MessageList messages={this.state.messages} />
       </div>
     );
   }
