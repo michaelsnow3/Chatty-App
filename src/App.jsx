@@ -35,6 +35,14 @@ class App extends Component {
       console.log('Connected to server');
     };
 
+    this.socket.onmessage = (message) => {
+      const newMessage = JSON.parse(message.data);
+      
+      this.setState({
+        messages: [...this.state.messages, newMessage]
+      })
+    }
+
   }
 
   render() {
