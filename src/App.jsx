@@ -7,11 +7,19 @@ class App extends Component {
     super();
 
     this.state = {
-      currentUser: {name: "Bob"}, // optional. if currentUser is not defined, it means the user is Anonymous
+      currentUser: {name: ''}, // optional. if currentUser is not defined, it means the user is Anonymous
       messages: []
     }
 
     this.addMessage = this.addMessage.bind(this);
+  }
+
+  //method that updates current user state
+  updateCurrentUser = (currentUsername) => {
+    const currentUser = {
+      name: currentUsername
+    }
+    this.setState({ currentUser })
   }
 
   //method that adds input message to messages array in state
@@ -53,7 +61,11 @@ class App extends Component {
           <a href='/' className='navbar-brand' >Chatty</a>
         </nav>
         <MessageList messages={this.state.messages} />
-        <ChatBar addMessage={this.addMessage} currentUser={this.state.currentUser} />
+        <ChatBar 
+          updateCurrentUser={this.updateCurrentUser} 
+          addMessage={this.addMessage} 
+          currentUser={this.state.currentUser}
+        />
       </div>
     );
   }

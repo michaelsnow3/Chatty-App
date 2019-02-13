@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ChatBar({ currentUser, addMessage }) {
+function ChatBar({ currentUser, addMessage, updateCurrentUser }) {
 
   function onEnter(event) {
     
@@ -16,12 +16,18 @@ function ChatBar({ currentUser, addMessage }) {
     }
   }
 
+  function onChange(event) {
+    const newUsername = event.target.value;
+    updateCurrentUser(newUsername);
+  }
+
   return(
     <footer className='chatbar'>
       <input 
         className="chatbar-username" 
         placeholder="Your Name (Optional)" 
-        defaultValue={currentUser.name} 
+        value={currentUser.name} 
+        onChange={onChange}
       />
       <input 
         className="chatbar-message" 
