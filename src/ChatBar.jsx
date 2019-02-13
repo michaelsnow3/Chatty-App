@@ -1,41 +1,60 @@
 import React from 'react';
 
-function ChatBar({ currentUser, addMessage, updateCurrentUser }) {
+class ChatBar extends React.Component {
 
-  function onEnter(event) {
+  constructor() {
+    super();
+
+    this.state = {
+      usernameInput: ''
+    }
+  }
+
+  onMessageEnter = (event) => {
     
     //check if enter was pressed
     if(event.key === 'Enter'){
       const content = event.target.value;
-      const username = event.target.previousSibling.value;
 
       //clear input
       event.target.value = '';
 
-      addMessage(username, content);
+      this.props.addMessage(content);
     }
   }
 
-  function onChange(event) {
-    const newUsername = event.target.value;
-    updateCurrentUser(newUsername);
+  onChange = (event) => {
+    this.setState({
+      usernameInput: event.target.value
+    });
   }
 
-  return(
-    <footer className='chatbar'>
-      <input 
-        className="chatbar-username" 
-        placeholder="Your Name (Optional)" 
-        value={currentUser.name} 
-        onChange={onChange}
-      />
-      <input 
-        className="chatbar-message" 
-        placeholder="Type a message and hit ENTER" 
-        onKeyPress={onEnter}
-      />
-    </footer>
-  );
+  onNameEnter = (event) => {
+    //check if enter was pressed
+    if(event.key === 'Enter'){
+      const newUsername = event.target.value;
+      this.props.updateCurrentUser(newUsername);
+    }
+  }
+
+  render() {
+    return(
+      <footer className='chatbar'>
+        <input 
+          className="chatbar-username" 
+          placeholder="Your Name (Optional)" 
+          value={this.state.usernameInput} 
+          onChange={this.onChange}
+          onKeyPress={this.onNameEnter}
+        />
+        <input 
+          className="chatbar-message" 
+          placeholder="Type a message and hit ENTER" 
+          onKeyPress={this.onMessageEnter}
+        />
+      </footer>
+    );
+  }
 }
 
 export default ChatBar;

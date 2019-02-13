@@ -19,14 +19,14 @@ class App extends Component {
     const currentUser = {
       name: currentUsername
     }
-    this.setState({ currentUser })
+    this.setState({ currentUser });
   }
 
   //method that adds input message to messages array in state
-  addMessage(username, content) {
-
+  addMessage(content) {
+    console.log(this.state)
     const newMessage = {
-      username: username,
+      username: this.state.currentUser.name,
       content: content
     }
 
