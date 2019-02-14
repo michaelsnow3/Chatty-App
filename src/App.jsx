@@ -8,7 +8,8 @@ class App extends Component {
 
     this.state = {
       // optional. if currentUser is not defined, it means the user is Anonymous
-      currentUser: {name: '', colour: ''}, 
+      currentUser: {name: ''}, 
+      userColour: '',
       messages: [],
       clientsConnected: 0
     }
@@ -19,9 +20,9 @@ class App extends Component {
     const colours = ['red', 'orange', 'blue', 'green'];
     const randomIndex = Math.floor(Math.random() * 4 );
 
-    const colour = colours[randomIndex];
+    const userColour = colours[randomIndex];
     this.setState({
-      currentUser: {colour}
+      userColour
     });
   }
 
@@ -42,7 +43,8 @@ class App extends Component {
     const newMessage = {
       type: 'postMessage',
       username: this.state.currentUser.name,
-      content: content
+      content: content,
+      userColour: this.state.userColour
     }
 
     this.socket.send(JSON.stringify(newMessage));

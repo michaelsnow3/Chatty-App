@@ -6,14 +6,15 @@ function Message({ message }) {
     //handle messages
     case 'incomingMessage':
       //destructure message object from props
-      let {content, username} = message;
+      let {content, username, userColour} = message;
+      const usernameStyle = {color: userColour};
 
       //assign anonymous to username if username is undefined
       username = username || 'Anonymous';
       
       return(
         <div className='message'>
-          <span className='message-username'>{username}</span>
+          <span style={usernameStyle} className='message-username'>{username}</span>
           <span className='message-content'>{content}</span>
         </div>
       );
