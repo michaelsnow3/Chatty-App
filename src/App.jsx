@@ -10,8 +10,6 @@ class App extends Component {
       currentUser: {name: ''}, // optional. if currentUser is not defined, it means the user is Anonymous
       messages: []
     }
-
-    this.addMessage = this.addMessage.bind(this);
   }
 
   //method that updates current user state
@@ -19,19 +17,34 @@ class App extends Component {
     const currentUser = {
       name: currentUsername
     }
+
+    const oldUsername = this.state.currentUser.name || 'anonymous';
+    this.userNameChange(oldUsername, currentUsername);
+
     this.setState({ currentUser });
   }
 
-  //method that adds input message to messages array in state
-  addMessage(content) {
-    console.log(this.state)
+  //method that sends message to websocket server
+  addMessage = (content) => {
     const newMessage = {
+      type: 'postMessage',
       username: this.state.currentUser.name,
       content: content
     }
 
     this.socket.send(JSON.stringify(newMessage));
   
+  }
+
+  //sends notification to server when user changes name
+  userNameChange = (oldUsername, newUsername) => {
+    const username = {
+      type: 'postNotification',
+      oldUsername,
+      newUsername
+    }
+
+    this.socket.send(JSON.stringify(username));
   }
 
   componentDidMount() {
