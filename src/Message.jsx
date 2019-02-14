@@ -6,16 +6,24 @@ function Message({ message }) {
     //handle messages
     case 'incomingMessage':
       //destructure message object from props
-      let {content, username, userColour} = message;
+      let {content, username, userColour, image} = message;
       const usernameStyle = {color: userColour};
 
       //assign anonymous to username if username is undefined
       username = username || 'Anonymous';
-      
+
+      let imgTag;
+      console.log(image)
+      if(image) {
+        let imgURL = `${image[2]}.${image[3]}`;
+        imgTag = <img className='image' src={imgURL} />;
+        content = image[1];
+      };
+
       return(
         <div className='message'>
           <span style={usernameStyle} className='message-username'>{username}</span>
-          <span className='message-content'>{content}</span>
+          <span className='message-content'>{content}<br />{imgTag}</span>
         </div>
       );
 

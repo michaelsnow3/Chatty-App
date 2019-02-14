@@ -33,8 +33,9 @@ class App extends Component {
     }
 
     const oldUsername = this.state.currentUser.name || 'Anonymous';
-    this.userNameChange(oldUsername, currentUsername);
-
+    if(oldUsername !== currentUsername){
+      this.userNameChange(oldUsername, currentUsername);
+    }
     this.setState({ currentUser });
   }
 
@@ -58,7 +59,6 @@ class App extends Component {
       oldUsername,
       newUsername
     }
-
     this.socket.send(JSON.stringify(username));
   }
 

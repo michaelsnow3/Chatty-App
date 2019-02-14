@@ -40,9 +40,14 @@ body {
   .notification-content {
     font-style: italic;
   }
+
   .message {
     display: flex;
     padding: 5px;
+
+    .image{
+      width: 60%;
+    }
 
     .message-content,
     .message-username {
