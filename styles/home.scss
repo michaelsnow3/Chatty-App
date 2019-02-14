@@ -85,8 +85,14 @@ body {
       padding: 0 10px;
       text-decoration: none;
     }
+
+    .navbar-clients {
+      color: inherit;
+      display: block;
+      float: right;
+      text-decoration: none;
+      margin: 0;
+      line-height: 60px;
+    }
   }
-
-
-
 }

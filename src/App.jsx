@@ -8,7 +8,8 @@ class App extends Component {
 
     this.state = {
       currentUser: {name: ''}, // optional. if currentUser is not defined, it means the user is Anonymous
-      messages: []
+      messages: [],
+      clientsConnected: 0
     }
   }
 
@@ -57,11 +58,17 @@ class App extends Component {
     };
 
     this.socket.onmessage = (message) => {
-      const newMessage = JSON.parse(message.data);
+      const data = JSON.parse(message.data);
       
-      this.setState({
-        messages: [...this.state.messages, newMessage]
-      })
+      if(data.type === 'incomingClientUpdate') {
+        this.setState({
+          clientsConnected: data.number
+        });
+      }else {
+        this.setState({
+          messages: [...this.state.messages, data]
+        });
+      }
     }
 
   }
@@ -72,6 +79,7 @@ class App extends Component {
       <div>
         <nav className='navbar'>
           <a href='/' className='navbar-brand' >Chatty</a>
+          <p className='navbar-clients'>{this.state.clientsConnected} users online</p>
         </nav>
         <MessageList messages={this.state.messages} />
         <ChatBar 
