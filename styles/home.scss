@@ -37,7 +37,9 @@ body {
       flex: 2;
     }
   }
-
+  .notification-content {
+    font-style: italic;
+  }
   .message {
     display: flex;
     padding: 5px;

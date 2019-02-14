@@ -7,10 +7,22 @@ class App extends Component {
     super();
 
     this.state = {
-      currentUser: {name: ''}, // optional. if currentUser is not defined, it means the user is Anonymous
+      // optional. if currentUser is not defined, it means the user is Anonymous
+      currentUser: {name: '', colour: ''}, 
       messages: [],
       clientsConnected: 0
     }
+  }
+
+  //method that assigns user random colour
+  assignColour = () => {
+    const colours = ['red', 'orange', 'blue', 'green'];
+    const randomIndex = Math.floor(Math.random() * 4 );
+
+    const colour = colours[randomIndex];
+    this.setState({
+      currentUser: {colour}
+    });
   }
 
   //method that updates current user state
@@ -19,7 +31,7 @@ class App extends Component {
       name: currentUsername
     }
 
-    const oldUsername = this.state.currentUser.name || 'anonymous';
+    const oldUsername = this.state.currentUser.name || 'Anonymous';
     this.userNameChange(oldUsername, currentUsername);
 
     this.setState({ currentUser });
@@ -49,6 +61,8 @@ class App extends Component {
   }
 
   componentDidMount() {
+    //assign user a colour on first render
+    this.assignColour();
 
     console.log("in component did mount")
     this.socket = new WebSocket('ws://localhost:3001');
