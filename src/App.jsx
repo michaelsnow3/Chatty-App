@@ -57,7 +57,6 @@ class App extends Component {
     this.socket = new WebSocket('ws://localhost:3001');
 
     this.socket.onopen = () => {
-      console.log('Connected to server');
     };
 
     this.socket.onmessage = (message) => {
@@ -83,7 +82,9 @@ class App extends Component {
           <a href='/' className='navbar-brand' >Chatty</a>
           <p className='navbar-clients'>{this.state.clientsConnected} users online</p>
         </nav>
+
         <MessageList messages={this.state.messages} />
+        
         <ChatBar 
           assignColour={this.assignColour}
           updateCurrentUser={this.updateCurrentUser} 

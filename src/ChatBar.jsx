@@ -60,7 +60,7 @@ class ChatBar extends React.Component {
         <input 
           className="chatbar-color" 
           type="color" 
-          onChange={this.onColourChange}           
+          onChange={this.onColourChange}         
         />
         <input 
           className="chatbar-message" 
