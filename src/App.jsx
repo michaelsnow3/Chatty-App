@@ -7,6 +7,7 @@ class App extends Component {
     super();
 
     this.state = {
+      
       // optional. if currentUser is not defined, it means the user is Anonymous
       currentUser: {name: ''}, 
       userColour: '',
@@ -66,7 +67,6 @@ class App extends Component {
     //assign user a colour on first render
     this.assignColour();
 
-    console.log("in component did mount")
     this.socket = new WebSocket('ws://localhost:3001');
 
     this.socket.onopen = () => {
@@ -107,6 +107,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;

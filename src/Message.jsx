@@ -13,12 +13,11 @@ function Message({ message }) {
       username = username || 'Anonymous';
 
       let imgTag;
-      console.log(image)
       if(image) {
         let imgURL = `${image[2]}.${image[3]}`;
         imgTag = <img className='image' src={imgURL} />;
         content = image[1];
-      };
+      }
 
       return(
         <div className='message'>
@@ -27,14 +26,19 @@ function Message({ message }) {
         </div>
       );
 
-      //handle notifications
-      case 'incomingNotification':
-        const {oldUsername, newUsername} = message;
-        return (
-          <div className="notification">
-            <span className="notification-content">{oldUsername} changed their name to {newUsername}.</span>
-          </div>
-        );
+    //handle notifications
+    case 'incomingNotification':
+      const {oldUsername, newUsername} = message;
+      return (
+        <div className="notification">
+          <span className="notification-content">{oldUsername} changed their name to {newUsername}.</span>
+        </div>
+      );
   }
 }
+
+Message.propTypes = {
+  message: React.PropTypes.object
+}
+
 export default Message;
