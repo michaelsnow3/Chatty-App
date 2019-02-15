@@ -5,6 +5,8 @@ Chatty-App allows connected users to chat in real time.
 -react, react-dom
 
 ## Final Product
+!["Screenshot of users messaging"](https://github.com/michaelsnow3/Chatty-App/blob/master/docs/messaging.png?raw=true)
+!["Screenshot of users messaging an image"](https://github.com/michaelsnow3/Chatty-App/blob/master/docs/sendingImage.png?raw=true)
 
 ## Dependencies
 -react
