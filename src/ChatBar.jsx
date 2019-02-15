@@ -6,21 +6,33 @@ class ChatBar extends React.Component {
     super();
 
     this.state = {
-      usernameInput: '',
-      colourInput: ''
+      usernameInput: ''
     }
+  }
+
+  emptyStringCheck = (string) => {
+    const whiteSpaceRE = /^(\s*)$/;
+    const whiteSpaceArray = string.match(whiteSpaceRE);
+
+    //returns false if there string is empty or only contains white space
+    if(!string || whiteSpaceArray) return false
+    return true
   }
 
   onMessageEnter = (event) => {
     
     //check if enter was pressed
     if(event.key === 'Enter'){
+      const inputColour = document.getElementById("color").value;
       const content = event.target.value;
+
+      //dont let user enter empty message
+      if(!this.emptyStringCheck(content)) return;
 
       //clear input
       event.target.value = '';
 
-      this.props.addMessage(content, this.state.colourInput);
+      this.props.addMessage(content, inputColour);
     }
   }
 
@@ -35,16 +47,12 @@ class ChatBar extends React.Component {
     //check if enter was pressed
     if(event.key === 'Enter'){
       const newUsername = event.target.value;
+
+      //dont let user enter empty name
+      if(!this.emptyStringCheck(newUsername)) return;
+
       this.props.updateCurrentUser(newUsername);
     }
-  }
-
-  onColourChange = (event) => {
-    const colourInput = event.target.value;
-
-    this.setState({
-      colourInput
-    })
   }
 
   render() {
@@ -60,7 +68,7 @@ class ChatBar extends React.Component {
         <input 
           className="chatbar-color" 
           type="color" 
-          onChange={this.onColourChange}         
+          id="color"         
         />
         <input 
           className="chatbar-message" 
