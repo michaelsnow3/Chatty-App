@@ -13,6 +13,6 @@ Chatty-App allows connected users to chat in real time.
 - react-dom
 
 ## Getting Started
-- Clone Chatty-Server: [Chatty-Server](https://github.com/michaelsnow3/chatty-server) and follow readme for setup
+- Clone Chatty-Server in addition to this repo: [Chatty-Server](https://github.com/michaelsnow3/chatty-server) and follow readme for setup
 - Install all dependencies (using the `npm install` command).
 - Run the development web server using the `npm start` command.
