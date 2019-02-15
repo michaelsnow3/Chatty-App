@@ -30,7 +30,13 @@ body {
     }
   
     .chatbar-message {
-      flex: 8;
+      flex: 7.5;
+    }
+
+    .chatbar-color {
+      flex: 0.5;
+      margin-top: auto;
+      margin-bottom: auto;
     }
   
     .chatbar-username {

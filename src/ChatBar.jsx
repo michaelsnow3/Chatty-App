@@ -6,7 +6,8 @@ class ChatBar extends React.Component {
     super();
 
     this.state = {
-      usernameInput: ''
+      usernameInput: '',
+      colourInput: ''
     }
   }
 
@@ -19,17 +20,18 @@ class ChatBar extends React.Component {
       //clear input
       event.target.value = '';
 
-      this.props.addMessage(content);
+      this.props.addMessage(content, this.state.colourInput);
     }
   }
 
-  onChange = (event) => {
+  onUsernameInputChange = (event) => {
     this.setState({
       usernameInput: event.target.value
     });
   }
 
   onNameEnter = (event) => {
+
     //check if enter was pressed
     if(event.key === 'Enter'){
       const newUsername = event.target.value;
@@ -37,15 +39,29 @@ class ChatBar extends React.Component {
     }
   }
 
+  onColourChange = (event) => {
+    const colourInput = event.target.value;
+
+    this.setState({
+      colourInput
+    })
+  }
+
   render() {
+    console.log("redering <ChatBar />");
     return(
       <footer className='chatbar'>
         <input 
           className="chatbar-username" 
           placeholder="Your Name (Optional)" 
           value={this.state.usernameInput} 
-          onChange={this.onChange}
+          onChange={this.onUsernameInputChange}
           onKeyPress={this.onNameEnter}
+        />
+        <input 
+          className="chatbar-color" 
+          type="color" 
+          onChange={this.onColourChange}           
         />
         <input 
           className="chatbar-message" 

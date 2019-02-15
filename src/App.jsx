@@ -16,17 +16,6 @@ class App extends Component {
     }
   }
 
-  //method that assigns user random colour
-  assignColour = () => {
-    const colours = ['red', 'orange', 'blue', 'green'];
-    const randomIndex = Math.floor(Math.random() * 4 );
-
-    const userColour = colours[randomIndex];
-    this.setState({
-      userColour
-    });
-  }
-
   //method that updates current user state
   updateCurrentUser = (currentUsername) => {
     const currentUser = {
@@ -41,12 +30,12 @@ class App extends Component {
   }
 
   //method that sends message to websocket server
-  addMessage = (content) => {
+  addMessage = (content, userColour) => {
     const newMessage = {
       type: 'postMessage',
       username: this.state.currentUser.name,
       content: content,
-      userColour: this.state.userColour
+      userColour
     }
 
     this.socket.send(JSON.stringify(newMessage));
@@ -64,8 +53,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    //assign user a colour on first render
-    this.assignColour();
 
     this.socket = new WebSocket('ws://localhost:3001');
 
@@ -99,6 +86,7 @@ class App extends Component {
         </nav>
         <MessageList messages={this.state.messages} />
         <ChatBar 
+          assignColour={this.assignColour}
           updateCurrentUser={this.updateCurrentUser} 
           addMessage={this.addMessage} 
           currentUser={this.state.currentUser}
