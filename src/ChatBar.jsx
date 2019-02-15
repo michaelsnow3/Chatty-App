@@ -48,7 +48,6 @@ class ChatBar extends React.Component {
   }
 
   render() {
-    console.log("redering <ChatBar />");
     return(
       <footer className='chatbar'>
         <input 
