@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {
       
       // optional. if currentUser is not defined, it means the user is Anonymous
-      currentUser: {name: ''}, 
+      currentUser: {name: 'Anonymous'}, 
       userColour: '',
       messages: [],
       clientsConnected: 0
@@ -22,7 +22,7 @@ class App extends Component {
       name: currentUsername
     }
 
-    const oldUsername = this.state.currentUser.name || 'Anonymous';
+    const oldUsername = this.state.currentUser.name;
     if(oldUsername !== currentUsername){
       this.userNameChange(oldUsername, currentUsername);
     }

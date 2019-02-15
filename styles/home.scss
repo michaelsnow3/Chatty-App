@@ -43,8 +43,14 @@ body {
       flex: 2;
     }
   }
-  .notification-content {
-    font-style: italic;
+  .notification {
+    padding: 5px;
+    
+    .notification-content {
+      font-style: italic;
+      margin: 5px;
+      padding: 0 10px;
+    }
   }
 
   .message {
